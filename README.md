@@ -32,7 +32,7 @@ To make things as easy as possible and to allow it to work in conjunction with o
 * [MIME::Types](http://search.cpan.org/~markov/MIME-Types-2.13/lib/MIME/Types.pod)
 * [File::MimeInfo](http://search.cpan.org/~michielb/File-MimeInfo-0.28/lib/File/MimeInfo.pm)
 * [File::Slurp](http://search.cpan.org/~uri/File-Slurp-9999.19/lib/File/Slurp.pm)
-* [File::Basename]() {built-in}
+* [File::Basename](http://search.cpan.org/~shay/perl-5.24.2/lib/File/Basename.pm) {built-in}
 
 The example files in www includes the following that are not mine strictly for examples:
 
