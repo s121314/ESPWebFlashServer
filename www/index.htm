@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Hello World</title>
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/min.min.css" />
+    <script language="Javascript" type="application/javascript" src="js/simple.js"></script>
+    <script language="Javascript" type="application/javascript" src="js/zepto.min.js"></script>
+  </head>
+  <body onLoad="myOnLoad();">
+    <h1 id="helloHeader">Hello World</h1>
+    <p>This is a web page.</p>
+    <!-- sample from min.min.css -->
+    <button class="btn btn-a" name="myButton">blue button</button><br />
+    <!-- sample image linking -->
+    <img src="images/arduinologo.svg" width="28" height="28" />
+    <img src="images/esp8266.gif" width="128" height="16" />
+    <script language="JavaScript" type="application/javascript">
+       // zepto example
+       $.each(['zepto', 'is', 'cool'], function(index, item){
+         console.log('item %d is: %s', index, item)
+       });
+    </script>
+  </body>
+</html>
+
