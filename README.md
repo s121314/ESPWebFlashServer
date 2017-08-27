@@ -10,6 +10,9 @@ The goal was to come up with a method where I could solve a couple of standard p
 2. avoid having to use an SD card or other additional storage space (and associated hardware)
 3. if possible, decrease the size to speed up the delivery and avoid timeouts serving large files (this is especially important if you want to use any kind of framework or canned script libraries that may be large and cumbersome)
 
+>Note: I've had less than favorable results with the simple server code, especially with failures on larger files using the client->write() method I had to resort to for this code. (large files like to fail a lot) As such I want to convert this code to use the
+>asynchronouse server code  as soon as possible. If anyone can help with that, let me know - please!
+
 This approach seems to solve all of the above problems, especially on the ESP8266. (from what I understand, the flash code is specific to the ESP8266 hardware, but the additional memory in devices such as the ESP-12e and ESP-12f that have 4Meg helps a lot!)
 
 The `WebFlash.h` file is borrowed from poster [Torx](http://www.esp8266.com/memberlist.php?mode=viewprofile&u=9636) on the esp8266 forums from the thread [WEBSERVER ON ESP8266, SERVING FILES FROM FLASH](http://www.esp8266.com/viewtopic.php?f=32&t=3780). I modified it slightly to serve my needs and renamed it. (NOTE: I have tried multiple times to contact the user for permission to repost but can't seem to get a response. The code is simple enough and so useful, I am posting here)
