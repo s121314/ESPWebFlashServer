@@ -58,7 +58,16 @@ while(my $line = <FINDSTRM>) {
         }
     }
 
-    if(length($bindat) == 0) {
+    # get original length and compressed length (if any)
+    my ($rawlen, $binlen);
+    {
+        use bytes;
+        $binlen = length($bindat);
+        $rawlen = length($rawdat)
+    }
+
+    if($binlen == 0) {
+        # if no compressed data present, file wasn't in list of types. Serve up raw
         print "  raw-reading file $fileinfo{path}\n";
         # assume binary file and read file direct in binmode
         $bindat = read_file($fileinfo{path}, { binmode => ':raw' });
@@ -71,9 +80,6 @@ while(my $line = <FINDSTRM>) {
             $fileinfo{enc} = ""
         }
     } else {
-        use bytes;
-        my $rawlen = length($rawdat);
-        my $binlen = length($bindat);
         # use raw data if compressed isn't at least 10% smaller
         if(($rawlen > 0) && ($binlen > ($rawlen * 0.9))) {
             print "  -- compressed version not smaller, using raw data!\n";
@@ -84,10 +90,12 @@ while(my $line = <FINDSTRM>) {
         }
     }
 
+    # use bytes once again to get the final size of the binary data to be encoded
     {
         use bytes;
         $fileinfo{len} = length($bindat);
     }
+
 
     $fileinfo{hexdat} = hexArray($bindat, 16);
     push(@filelist,\%fileinfo);
@@ -168,13 +176,13 @@ sub processHTML {
 sub processCSS {
     my $css   = shift @_;
     my $fName = shift @_;
-    my $packer = CSS::Packer->init();
     my $cssMin;
     if($fName =~ /\.min\./) {
         print "  minified css detected!\n";
         $cssMin = $css;
     } else {
         print "  css minifying $fName\n";
+        my $packer = CSS::Packer->init();
         $cssMin = $packer->minify(\$css, { compress => 'minify', remove_comments => 1 } );
         # don't use minified version if it's not at least 10% smaller
         if(length($cssMin) > (length($css)*0.9)){
@@ -217,6 +225,9 @@ sub hexArray {
             push(@fRow, join(", ", @fCol));
             @fCol = ();
         }
+    }
+    if(scalar @fCol > 0) {
+        push(@fRow, join(", ", @fCol));
     }
     return "  " . join(",\n  ", @fRow);
 }

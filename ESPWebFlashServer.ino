@@ -2,7 +2,7 @@
  * WebFlashServer.ino
  *
  * Created: 8/27/2017 12:44:09 AM
- * Author: treii28@hotmail.com
+ * Author: swood
  */
 
 #ifndef Arduino_h
@@ -66,7 +66,9 @@ bool loadIndexFromFlash(int i) {
 
 /* Flash.h load functions for web contet */
 bool loadPathFromFlash(String path) {
-	if (path.endsWith("/")) path += "index.htm";
+ 	if (path.endsWith("/")) path += "index.htm";
+  Serial.print("searching flash array for ");
+  Serial.println(path);
 
 	int NumFiles = sizeof(files) / sizeof(struct t_websitefiles);
 	int index = findFlashIndexByPath(path);
