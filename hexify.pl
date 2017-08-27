@@ -27,8 +27,9 @@ while(my $line = <FINDSTRM>) {
     chomp($line);
     my %fileinfo;
     $fileinfo{path} = $line;
+    ($fileinfo{url} = $line) =~ s|^/?$webdir/?||;
     print "processing file: $fileinfo{path}:\n";
-    (my $hName = $line) =~ s|/|__|g;
+    (my $hName = $fileinfo{url}) =~ s|/|__|g;
     $hName =~ s/[\.\s]/_/g;
     print "  using header name: $hName\n";
     $fileinfo{name} = $hName;
@@ -127,7 +128,7 @@ foreach $f (@filelist) {
     .len     = %d,
     .enc     = "%s",
     .content = &%s,
-  },', $f->{path}, $f->{type}, $f->{len}, $f->{enc}, $f->{name};
+  },', $f->{url}, $f->{type}, $f->{len}, $f->{enc}, $f->{name};
 }
 
 print OUTFILE '
