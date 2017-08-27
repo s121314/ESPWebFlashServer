@@ -41,4 +41,6 @@ The example files in www includes the following that are not mine strictly for e
 * a copy of the ESP8266 logo in gif format
 * a copy of the Arduino circle logo in svg format
 
+I have also used this in conjunction with platformio by putting the www tree in the project root and modifying the output file to include `src/` in front of it so it puts it in with the other source files.
+
 Any suggestions or improvements, bug reports or potential fixes are always appreciated.
