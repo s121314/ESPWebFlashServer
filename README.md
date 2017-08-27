@@ -22,4 +22,23 @@ The end result is dropped into the directory where the script is run (should be 
 
 To make things as easy as possible and to allow it to work in conjunction with other encoded server `handle*` methods, I set up the server code to actually check the array of structs for the requested path only after all other methods have failed (actually inside of the `handleNotFound()` method before spitting out a 404 error). An example of this in action is in the bare-bones server code included in `ESPWebFlashServer.ino`.  A sample `www/` tree is also included along with the output from `hexify.pl` in the included `webfiles.h`.
 
+`hexify.pl` utilizes (and requires) the following CPAN libraries be installed:
+
+* [Switch](http://search.cpan.org/~chorny/Switch-2.17/Switch.pm) a case/switch addon
+* [HTML::Packer](http://search.cpan.org/~leejo/HTML-Packer-2.05/lib/HTML/Packer.pm)
+* [CSS::Packer](http://search.cpan.org/~leejo/CSS-Packer-2.03/lib/CSS/Packer.pm)
+* [JavaScript::Packer](http://search.cpan.org/~leejo/JavaScript-Packer-2.03/lib/JavaScript/Packer.pm)
+* [Gzip::Faster](http://search.cpan.org/~bkb/Gzip-Faster-0.20/lib/Gzip/Faster.pod)
+* [MIME::Types](http://search.cpan.org/~markov/MIME-Types-2.13/lib/MIME/Types.pod)
+* [File::MimeInfo](http://search.cpan.org/~michielb/File-MimeInfo-0.28/lib/File/MimeInfo.pm)
+* [File::Slurp](http://search.cpan.org/~uri/File-Slurp-9999.19/lib/File/Slurp.pm)
+* [File::Basename]() {built-in}
+
+The example files in www includes the following that are not mine strictly for examples:
+
+* [min css toolkit](https://mincss.com/) as a sample of using a small css toolkit already minified
+* [zepto.js](http://zeptojs.com/) as an example of having a minimalist javascript library already minified
+* a copy of the ESP8266 logo in gif format
+* a copy of the Arduino circle logo in svg format
+
 Any suggestions or improvements, bug reports or potential fixes are always appreciated.
