@@ -27,7 +27,7 @@ while(my $line = <FINDSTRM>) {
     chomp($line);
     my %fileinfo;
     $fileinfo{path} = $line;
-    ($fileinfo{url} = $line) =~ s|^/?$webdir/?||;
+    ($fileinfo{url} = $line) =~ s|^/?$webdir||;
     print "processing file: $fileinfo{path}:\n";
     (my $hName = $fileinfo{url}) =~ s|/|__|g;
     $hName =~ s/[\.\s]/_/g;
